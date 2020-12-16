@@ -1,3 +1,21 @@
+//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+//tasks.withType<ShadowJar> {
+//    baseName = "app"
+//    classifier = ""
+//    version = ""
+//}
+
+plugins {
+    id("com.github.johnrengelman.shadow") version "5.2.0"
+}
+
 buildscript {
     repositories {
         jcenter()
@@ -46,6 +64,7 @@ dependencies {
     compile "ch.qos.logback:logback-classic:1.2.1"
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     implementation("org.litote.kmongo:kmongo:4.2.3")
+    implementation("org.litote.kmongo:kmongo-coroutine:4.2.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2")
     compile "org.koin:koin-core:2.2.0"
     implementation("io.ktor:ktor-jackson:$ktor_version")
