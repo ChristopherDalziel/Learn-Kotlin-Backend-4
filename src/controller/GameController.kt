@@ -23,23 +23,5 @@ fun Route.gameRoutes(service: GameService) {
             val findGame = service.findOne(id ?: "")
             findGame?.let { game -> call.respond(HttpStatusCode.OK, game) }
         }
-
-//        post<Conference>("") { request ->
-//            call.respond(HttpStatusCode.Created, service.insertEntity(request))
-//        }
-//
-//        put("") {
-//            val requestBody = call.receiveOrNull<Conference>()
-//            requestBody?.let {
-//                call.respond(HttpStatusCode.OK, service.updateEntity(it))
-//            }
-//        }
-//
-//        delete("/{id}") {
-//            val parameters = call.parameters
-//            val id = parameters.entries().find { it.key == "id" }?.value?.first()
-//            call.respond(HttpStatusCode.OK, service.deleteEntity(id ?: ""))
-//        }
-
     }
 }
