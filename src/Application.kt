@@ -44,7 +44,11 @@ fun Application.module(testing: Boolean = false) {
         modules(appModule)
     }
 
-    val uri = environment.config.property("ktor.mongoUri").getString()
+//    val uri = environment.config.property("ktor.mongoUri").getString()
+
+    var uri = System.getenv("MONGO_URI").toString()
+
+    println(uri)
 
     val coroutineClient: CoroutineClient by inject {
         parametersOf(uri)
