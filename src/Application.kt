@@ -46,7 +46,6 @@ fun Application.module(testing: Boolean = false) {
 
     var uri: String = System.getenv("MONGO_URI") ?: "NULL"
 
-    println(uri)
 
     val coroutineClient: CoroutineClient by inject {
         parametersOf(uri)
