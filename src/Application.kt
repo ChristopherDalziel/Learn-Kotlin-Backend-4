@@ -44,9 +44,7 @@ fun Application.module(testing: Boolean = false) {
         modules(appModule)
     }
 
-//    val uri = environment.config.property("ktor.mongoUri").getString()
-
-    var uri: String = System.getenv("mongoUri") ?: "default_value"
+    var uri: String = System.getenv("MONGO_URI") ?: "NULL"
 
     println(uri)
 
