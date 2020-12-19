@@ -1,5 +1,3 @@
-//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 buildscript {
     repositories {
         jcenter()
@@ -10,18 +8,8 @@ buildscript {
     }
 }
 
-plugins {
-    id("com.github.johnrengelman.shadow") version "6.1.0"
-}
-
 apply plugin: 'kotlin'
 apply plugin: 'application'
-
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
 
 group 'com.example'
 version '0.0.1'
