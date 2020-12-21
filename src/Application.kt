@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
 
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
-fun Application.module(testing: Boolean = false) {
+fun Application.module() {
 
     install(DefaultHeaders)
 
@@ -44,8 +44,9 @@ fun Application.module(testing: Boolean = false) {
         modules(appModule)
     }
 
-    var uri: String = System.getenv("MONGO_URI") ?: "NULL"
+//    var uri: String = System.getenv("MONGO_URI") ?: "NULL"
 
+    val uri: String = this.environment.config.property("mongo.uri").getString()
 
     val coroutineClient: CoroutineClient by inject {
         parametersOf(uri)
