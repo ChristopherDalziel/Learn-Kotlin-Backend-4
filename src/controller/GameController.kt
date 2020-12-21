@@ -6,8 +6,6 @@ import io.ktor.request.*
 import io.ktor.response.respond
 import io.ktor.routing.*
 import models.Game
-import org.litote.kmongo.coroutine.CoroutineClient
-import org.litote.kmongo.updateMany
 import service.GameService
 
 fun Route.gameRoutes(service: GameService) {
@@ -29,12 +27,12 @@ fun Route.gameRoutes(service: GameService) {
             call.respond(HttpStatusCode.Created, service.insertEntity(request))
         }
 
-//        put("") {
-//            val requestBody = call.receiveOrNull<Game>()
-//            requestBody?.let {
-//                call.respond(HttpStatusCode.OK, service.updateEntity(it))
-//            }
-//        }
+        put("") {
+            val requestBody = call.receiveOrNull<Game>()
+            requestBody?.let {
+                call.respond(HttpStatusCode.OK, service.updateEntity(it))
+            }
+        }
 
         delete("/{id}") {
             val parameters = call.parameters
