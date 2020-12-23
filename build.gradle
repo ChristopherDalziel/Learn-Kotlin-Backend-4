@@ -53,13 +53,3 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         jvmTarget = "1.8"
     }
 }
-
-//tasks.withType<ShadowJar> {
-//    archiveClassifier.set("all")
-//    archiveBaseName.set("Kotlin-Books")
-//    configurations = listOf(project.configurations.compile.get() ,project.configurations.runtimeClasspath.get())
-//    mergeServiceFiles()
-//    manifest {
-//        attributes["Main-Class"] = application.mainClassName
-//    }
-//}
