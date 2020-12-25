@@ -39,6 +39,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("ch.qos.logback:logback-classic:1.2.1")
     implementation(group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25')
+    // KMONGO is a wrapper library - used to do MONGODB operations
     implementation("org.litote.kmongo:kmongo:4.2.3")
     implementation("org.litote.kmongo:kmongo-coroutine:4.2.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2")

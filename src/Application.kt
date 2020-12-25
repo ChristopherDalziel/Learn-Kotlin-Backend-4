@@ -16,22 +16,28 @@ import org.litote.kmongo.coroutine.CoroutineClient
 import repository.GameRepository
 import service.GameService
 
+// Using KTOR we need to set up our embeddedServer within our main argument.
 fun main(args: Array<String>) {
     embeddedServer(Netty, commandLineEnvironment(args)).start(wait = true)
 }
 
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
+// Everything in KTOR is broken up into modules - How we do this is driven by the application.conf folder
 fun Application.module() {
+
+//    Every time we want a 'feature' we use install
 
     install(DefaultHeaders)
 
+//    Used to return JSON format
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
         }
     }
 
+//    Allows us to write less code just writing our define the CORS methods we want to use
     install(CORS) {
         method(HttpMethod.Options)
         method(HttpMethod.Put)
@@ -40,6 +46,7 @@ fun Application.module() {
         anyHost()
     }
 
+//    Koin dependency injection (Inside DI -> appModule)
     install(Koin) {
         modules(appModule)
     }
@@ -48,6 +55,7 @@ fun Application.module() {
 
     val uri: String = this.environment.config.property("mongo.uri").getString()
 
+//    Setting up our dependencies for our Coroutine Client (This is the actual KMONGO wrapper library) - Injects into our DB
     val coroutineClient: CoroutineClient by inject {
         parametersOf(uri)
     }
@@ -56,6 +64,7 @@ fun Application.module() {
         parametersOf(coroutineClient)
     }
 
+//    
     val service: GameService by inject {
         parametersOf(repository)
     }
