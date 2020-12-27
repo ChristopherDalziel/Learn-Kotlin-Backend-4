@@ -51,8 +51,6 @@ fun Application.module() {
         modules(appModule)
     }
 
-//    var uri: String = System.getenv("MONGO_URI") ?: "NULL"
-
     val uri: String = this.environment.config.property("mongo.uri").getString()
 
 //    Setting up our dependencies for our Coroutine Client (This is the actual KMONGO wrapper library) - Injects into our DB
@@ -64,7 +62,6 @@ fun Application.module() {
         parametersOf(coroutineClient)
     }
 
-//    
     val service: GameService by inject {
         parametersOf(repository)
     }
