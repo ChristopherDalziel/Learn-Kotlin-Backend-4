@@ -62,10 +62,12 @@ fun Application.module() {
         parametersOf(coroutineClient)
     }
 
+//    Service class for encapsulation - this could be in the repository class, ktor doesn't enforce a particular architecture
     val service: GameService by inject {
         parametersOf(repository)
     }
 
+//    Our routing for HTTP operations, here we've created a function for this
     routing {
         gameRoutes(service)
     }
