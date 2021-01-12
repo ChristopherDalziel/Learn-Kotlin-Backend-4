@@ -3,7 +3,7 @@ import controller.gameRoutes
 import di.appModule
 import io.ktor.application.*
 import io.ktor.features.*
-import io.ktor.http.HttpMethod
+import io.ktor.http.*
 import io.ktor.jackson.jackson
 import io.ktor.routing.routing
 import io.ktor.server.engine.commandLineEnvironment
@@ -39,11 +39,25 @@ fun Application.module() {
 
 //    Allows us to write less code just writing our define the CORS methods we want to use
     install(CORS) {
+
         method(HttpMethod.Options)
+        method(HttpMethod.Get)
+        method(HttpMethod.Post)
         method(HttpMethod.Put)
         method(HttpMethod.Delete)
         method(HttpMethod.Patch)
+        header(HttpHeaders.AccessControlAllowHeaders)
+        header(HttpHeaders.ContentType)
+        header(HttpHeaders.AccessControlAllowOrigin)
+        allowCredentials = true
         anyHost()
+
+//        method(HttpMethod.Options)
+//        method(HttpMethod.Put)
+//        method(HttpMethod.Post)
+//        method(HttpMethod.Delete)
+//        method(HttpMethod.Patch)
+//        anyHost()
     }
 
 //    Koin dependency injection (Inside DI -> appModule)

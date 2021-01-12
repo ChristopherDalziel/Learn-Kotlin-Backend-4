@@ -32,13 +32,13 @@ fun Route.gameRoutes(service: GameService) {
             call.respond(HttpStatusCode.Created, service.insertEntity(request))
         }
 
-        put("") {
-//            Return the body and update it of a specific game
-            val requestBody = call.receiveOrNull<Game>()
-            requestBody?.let {
-                call.respond(HttpStatusCode.OK, service.updateEntity(it))
-            }
-        }
+//        put("") {
+////            Return the body and update it of a specific game
+//            val requestBody = call.receiveOrNull<Game>()
+//            requestBody?.let {
+//                call.respond(HttpStatusCode.OK, service.updateEntity(it))
+//            }
+//        }
 
         delete("/{id}") {
             val parameters = call.parameters
